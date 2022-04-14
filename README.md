@@ -7,7 +7,7 @@ The goal of Zero-Shot Relation Triplet Extraction (ZeroRTE) is to extract relati
 
 ### Installation
 
-- Install requirements: `pip install -r requirements.txt`
+- Install requirements: `pip install -r requirements.txt` or `conda env create --file environment.yml`
 - Download and extract the [datasets here](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/zero_rte_data.zip) to `outputs/data/splits/zero_rte`
 
 ### Model Training
