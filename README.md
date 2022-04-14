@@ -3,6 +3,8 @@
 This repository implements our ACL Findings 2022 research paper [RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction](https://doi.org/10.48550/arXiv.2203.09101). 
 The goal of Zero-Shot Relation Triplet Extraction (ZeroRTE) is to extract relation triplets of the format `(head entity, tail entity, relation)`, despite not having annotated data for the test relation labels.
 
+![diagram](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/diagram.png)
+
 ### Installation
 
 - Install requirements: `pip install -r requirements.txt`
