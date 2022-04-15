@@ -473,25 +473,41 @@ def run_eval_many(path_model_pattern: str, data_dir: str, **kwargs):
 
 
 """
-p wrapper.py write_data_splits data/data_zsbert/wiki.json --mode wiki --seeds [0,1,11,14,16] --folder_out temp/outputs/data/splits/zero_rte
-p wrapper.py write_data_splits data/data_zsbert/fewrel.json --mode fewrel --seeds [9,1,0,8,4] --folder_out temp/outputs/data/splits/zero_rte
+FewRel Dataset
 
-p wrapper.py main \
---path_train outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/train.jsonl \
---path_dev outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/dev.jsonl \
---path_test outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/test.jsonl \
---save_dir outputs/wrapper/fewrel/unseen_10_seed_0
-
-p wrapper.py main \
+python wrapper.py main \
 --path_train outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/train.jsonl \
 --path_dev outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/dev.jsonl \
 --path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
 --save_dir outputs/wrapper/wiki/unseen_10_seed_0
 
-p wrapper.py run_eval \
+python wrapper.py run_eval \
 --path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \
 --path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
 --mode single
+
+python wrapper.py run_eval \
+--path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \
+--path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
+--mode multi
+
+Wiki-ZSL Dataset
+
+python wrapper.py main \
+--path_train outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/train.jsonl \
+--path_dev outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/dev.jsonl \
+--path_test outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/test.jsonl \
+--save_dir outputs/wrapper/fewrel/unseen_10_seed_0
+
+python wrapper.py run_eval \
+--path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \
+--path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
+--mode single
+
+python wrapper.py run_eval \
+--path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \
+--path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
+--mode multi
 
 """
 
