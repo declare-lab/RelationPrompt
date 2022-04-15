@@ -57,17 +57,17 @@ python wrapper.py main \
 
 Run evaluation (Single-triplet setting)
 ```
-p wrapper.py run_eval \                                                                                               
---path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \                                                  
---path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
+python wrapper.py run_eval \                                                                                               
+--path_model outputs/wrapper/fewrel/unseen_10_seed_0/extractor_final \                                                  
+--path_test outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/test.jsonl \
 --mode single
 ```
 
 Run evaluation (Multi-triplet setting)
 ```
-p wrapper.py run_eval \                                                                                               
---path_model outputs/wrapper/wiki/unseen_10_seed_0/extractor_final \                                                  
---path_test outputs/data/splits/zero_rte/wiki/unseen_10_seed_0/test.jsonl \
+python wrapper.py run_eval \                                                                                               
+--path_model outputs/wrapper/fewrel/unseen_10_seed_0/extractor_final \                                                  
+--path_test outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/test.jsonl \
 --mode multi
 ```
 
