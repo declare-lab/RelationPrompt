@@ -12,8 +12,41 @@ The goal of Zero-Shot Relation Triplet Extraction (ZeroRTE) is to extract relati
 
 - Install requirements: `pip install -r requirements.txt` or `conda env create --file environment.yml`
 - Download and extract the [datasets here](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/zero_rte_data.zip) to `outputs/data/splits/zero_rte`
+- [FewRel Pretrained Model](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/model_fewrel_unseen_10_seed_0.tar) (unseen=10, seed=0)
+- [Wiki-ZSL Pretrained Model](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/model_wiki_unseen_10_seed_0.tar) (unseen=10, seed=0)
 
-### Model Training
+
+### Data Exploration | [![Colab](https://img.shields.io/badge/Colab-Code%20Demo-%23fe9f00)](https://colab.research.google.com/drive/18lrKD30kxEUolQ61o5nzUJM0rvWgpbFK#scrollTo=vw3NlKDddMIP&line=2&uniqifier=1)
+
+```
+from wrapper import Dataset
+
+data = Dataset.load(path)
+for s in data.sents:
+    print(s.tokens)
+    for t in s.triplets:
+        print(t.head, t.tail, t.label)
+```
+
+### Generate with Pretrained Model | [![Colab](https://img.shields.io/badge/Colab-Code%20Demo-%23fe9f00)](https://colab.research.google.com/drive/18lrKD30kxEUolQ61o5nzUJM0rvWgpbFK#scrollTo=tUFis82oGUAS&line=1&uniqifier=1)
+
+```
+from wrapper import Generator
+
+model = Generator(load_dir="gpt2", save_dir="outputs/wrapper/fewrel/unseen_10_seed_0/generator")
+model.generate(labels=["location", "religion"], path_out="synthetic.jsonl")
+```
+
+### Extract with Pretrained Model | [![Colab](https://img.shields.io/badge/Colab-Code%20Demo-%23fe9f00)](https://colab.research.google.com/drive/18lrKD30kxEUolQ61o5nzUJM0rvWgpbFK#scrollTo=eGxP3vVmID9W&line=1&uniqifier=1)
+
+```
+from wrapper import Extractor
+
+model = Extractor(load_dir="facebook/bart-base", save_dir="outputs/wrapper/fewrel/unseen_10_seed_0/extractor_final")
+model.predict(path_in=path_test, path_out="pred.jsonl")
+```
+
+### Model Training | [![Colab](https://img.shields.io/badge/Colab-Code%20Demo-%23fe9f00)](https://colab.research.google.com/drive/18lrKD30kxEUolQ61o5nzUJM0rvWgpbFK#scrollTo=qi5PAW5ocjfj&line=1&uniqifier=1)
 
 Train the Generator and Extractor models:
 ```
@@ -49,7 +82,7 @@ extractor_final.predict(path_in=path_test, path_out=path_pred)
 
 ### Experiment Scripts
 
-Run training (You can change "fewrel" to "wiki" or unseen to 5/10/15 or seed to 0/1/2/3/4):
+Run training in [wrapper.py](https://github.com/declare-lab/RelationPrompt/blob/783f33c301813368a5a6e3bdbbe50c47df7647bf/wrapper.py#L370) (You can change "fewrel" to "wiki" or unseen to 5/10/15 or seed to 0/1/2/3/4):
 ```
 python wrapper.py main \
 --path_train outputs/data/splits/zero_rte/fewrel/unseen_10_seed_0/train.jsonl \                                       
@@ -75,7 +108,7 @@ python wrapper.py run_eval \
 ```
 
 ### Research Citation
-If the code is useful for your research project, we appreciate if you cite the following paper:
+If the code is useful for your research project, we appreciate if you cite the following [paper](https://arxiv.org/abs/2203.09101):
 ```
 @inproceedings{chia-etal-2022-relationprompt,
     title = "RelationPrompt: Leveraging Prompts to Generate Synthetic Data for Zero-Shot Relation Triplet Extraction",
