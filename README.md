@@ -10,6 +10,8 @@ The goal of Zero-Shot Relation Triplet Extraction (ZeroRTE) is to extract relati
 
 ### Installation
 
+- Python 3.7
+- If your GPU uses CUDA 11, first install the specific PyTorch: `pip install torch==1.10.0 --extra-index-url https://download.pytorch.org/whl/cu113`
 - Install requirements: `pip install -r requirements.txt` or `conda env create --file environment.yml`
 - Download and extract the [datasets here](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/zero_rte_data.zip) to `outputs/data/splits/zero_rte`
 - [FewRel Pretrained Model](https://github.com/declare-lab/RelationPrompt/releases/download/v1.0.0/model_fewrel_unseen_10_seed_0.tar) (unseen=10, seed=0)
