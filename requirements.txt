@@ -6,6 +6,6 @@ pydantic==1.8.2
 fastavro==1.4.0
 fire==0.4.0
 nltk==3.6.6
-lxml==4.6.5
+lxml==4.9.1
 editdistance==0.5.3
 seqeval==1.2.2
