@@ -281,7 +281,6 @@ class Extractor(BaseModel):
             return
 
         data_train = Dataset.load(path_train)
-        data_train = Dataset.load(path_train)
         data_dev = Dataset.load(path_dev)
         path_train = self.write_data(data_train, "train")
         path_dev = self.write_data(data_dev, "dev")
